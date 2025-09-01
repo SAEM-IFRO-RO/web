@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+@theme {
+  --color-orange-1: rgb(245, 151, 63);
+  --color-orange-2: rgb(172, 69, 29);
+  --color-grey: rgb(174, 174, 174);
+}

@@ -1,0 +1,14 @@
+<li style="grid-template-columns: repeat(@ColumnsCount, 1fr) 8rem;"
+  class="grid grid-flow-row content-center items-center bg-red rounded-md px-2 @((Header ?? false) ? "bg-grey/10 py-3.5 font-semibold" : "py-6 border-b border-grey/50 hover:bg-orange-1/7 transition-colors duration-100")">
+  @ChildContent
+</li>
+
+@code {
+
+  [Parameter]
+  public RenderFragment? ChildContent { get; set; }
+  [Parameter]
+  public int? ColumnsCount { get; set; } = 4;
+  [Parameter]
+  public bool? Header { get; set; } = false;
+}

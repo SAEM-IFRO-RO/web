@@ -1,0 +1,31 @@
+@page "/professores"
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.Section;
+
+<Header Title="Professores" />
+
+<div class="flex flex-col gap-10">
+  <div class="flex justify-between">
+    <input type="text" class="border-grey border-2 rounded-lg p-2 focus:outline-none" placeholder="Digite aqui">
+
+    <button class="bg-orange-1 p-3 rounded-lg text-white flex gap-2.5 font-medium">
+      Novo Professor
+      <img src="./icons/plus.svg" />
+    </button>
+  </div>
+
+  <ul>
+    <ListItem Header="true">
+      <ChildContent>
+        <span>Nome completo</span>
+        <span>Telefone</span>
+        <span>E-mail</span>
+        <span>CPF</span>
+        <span>Ações</span>
+      </ChildContent>
+    </ListItem>
+    <ListRecord />
+    <ListRecord />
+    <ListRecord />
+  </ul>
+</div>

@@ -1,11 +1,11 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <nav class="sidebar">
+<div class="page overflow-hidden">
+    <nav class="sidebar bg-orange-1">
         <NavMenu />
     </nav>
 
-    <main class="content px-4">
+    <main class="content px-4 overflow-auto">
         @Body
     </main>
 </div>

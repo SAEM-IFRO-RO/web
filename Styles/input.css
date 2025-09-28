@@ -4,6 +4,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 @theme {
   --color-orange-1: rgb(245, 151, 63);
   --color-orange-2: rgb(172, 69, 29);

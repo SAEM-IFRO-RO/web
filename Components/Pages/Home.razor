@@ -1,8 +1,84 @@
 ﻿@page "/"
-@using SaemWeb.Components.UI;
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.Section;
 
 <PageTitle>Home - SAEM</PageTitle>
 
-<Title />
+<Header>
+  <StartContent>Início</StartContent>
+</Header>
 
-Hello, world!
+<article class="flex justify-between gap-14">
+  <GridSchedule />
+
+  <section class="flex flex-col justify-between gap-5 text-sm">
+    <div class="flex flex-col gap-1.5 border-2 border-grey rounded-lg p-2.5">
+      <h1 class="flex justify-center font-semibold text-sm gap-1.5 mb-1 px-1">
+        Aniversariantes do mês
+        <img src="./icons/cake.svg" alt="icone" class="w-4.5" />
+      </h1>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Alves</span>
+        <span>12/05</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Alves</span>
+        <span>12/05</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Alves</span>
+        <span>12/05</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Alves</span>
+        <span>12/05</span>
+      </span>
+    </div>
+
+    <div class="flex flex-col gap-1.5 border-2 border-grey rounded-lg p-2.5">
+      <h1 class="flex justify-center font-medium gap-1.5 mb-1 px-1 text-center">
+        Aluguéis do mês
+        <img src="./icons/key.svg" alt="icone" class="w-4.5" />
+      </h1>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Sala 52</span>
+        <span>12/05</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Sala 52</span>
+        <span>12/05</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Sala 52</span>
+        <span>12/05</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Sala 52</span>
+        <span>12/05</span>
+      </span>
+    </div>
+
+    <div class="flex flex-col gap-1.5 border-2 border-grey rounded-lg p-2.5">
+      <h1 class="flex justify-between font-medium gap-1.5 mb-1 px-1">
+        Mensalidades atrasadas
+        <img src="./icons/clockAlert.svg" alt="icone" class="w-4" />
+      </h1>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Tal</span>
+        <span class="text-red-800">R$ 300,00</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Tal</span>
+        <span class="text-red-800">R$ 300,00</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Tal</span>
+        <span class="text-red-800">R$ 300,00</span>
+      </span>
+      <span class="flex justify-between text-sm rounded-xs px-1">
+        <span>Fulano de Tal</span>
+        <span class="text-red-800">R$ 300,00</span>
+      </span>
+    </div>
+  </section>
+</article>

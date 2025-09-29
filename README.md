@@ -21,9 +21,17 @@ pnpm install
 ```
 
 ### Rodar o ambiente de desenvolvimento
+Em um terminal, para iniciar o Tailwind CLI:
+```bash
+pnpx @tailwindcss/cli -i ./Styles/input.css -o ./wwwroot/tailwind.css --watch
+```
+
+E em outro terminal, para iniciar a aplicação em ambiente dev:
+
 ```bash
 dotnet watch
 ```
+
 Em seguida, o projeto será aberto automaticamente em uma aba do navegador em uma porta do localhost.
 
 ### Fazer o build

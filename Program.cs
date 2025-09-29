@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddSingleton<SaemWeb.Configs.Connection>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

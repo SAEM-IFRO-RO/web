@@ -7,7 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -204,14 +203,8 @@
   .table {
     display: table;
   }
-  .h-8 {
-    height: calc(var(--spacing) * 8);
-  }
   .h-9 {
     height: calc(var(--spacing) * 9);
-  }
-  .h-10 {
-    height: calc(var(--spacing) * 10);
   }
   .h-full {
     height: 100%;
@@ -225,14 +218,8 @@
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
-  .w-8 {
-    width: calc(var(--spacing) * 8);
-  }
   .w-9 {
     width: calc(var(--spacing) * 9);
-  }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
   }
   .flex-1 {
     flex: 1;
@@ -245,9 +232,6 @@
   }
   .grid-flow-row {
     grid-auto-flow: row;
-  }
-  .grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
   .grid-cols-\[4rem_repeat\(4\,1fr\)\] {
     grid-template-columns: 4rem repeat(4,1fr);
@@ -327,12 +311,6 @@
   .border-grey {
     border-color: var(--color-grey);
   }
-  .border-grey\/10 {
-    border-color: color-mix(in srgb, rgb(174, 174, 174) 10%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-grey) 10%, transparent);
-    }
-  }
   .border-grey\/50 {
     border-color: color-mix(in srgb, rgb(174, 174, 174) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -355,18 +333,6 @@
     background-color: color-mix(in srgb, rgb(174, 174, 174) 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-grey) 10%, transparent);
-    }
-  }
-  .bg-grey\/30 {
-    background-color: color-mix(in srgb, rgb(174, 174, 174) 30%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-grey) 30%, transparent);
-    }
-  }
-  .bg-grey\/50 {
-    background-color: color-mix(in srgb, rgb(174, 174, 174) 50%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-grey) 50%, transparent);
     }
   }
   .bg-orange-1 {
@@ -402,12 +368,6 @@
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }
-  .p-3\.5 {
-    padding: calc(var(--spacing) * 3.5);
-  }
-  .p-4 {
-    padding: calc(var(--spacing) * 4);
-  }
   .p-5 {
     padding: calc(var(--spacing) * 5);
   }
@@ -423,17 +383,11 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
-  .py-2 {
-    padding-block: calc(var(--spacing) * 2);
-  }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
   }
   .py-3\.5 {
     padding-block: calc(var(--spacing) * 3.5);
-  }
-  .py-4 {
-    padding-block: calc(var(--spacing) * 4);
   }
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
@@ -458,17 +412,9 @@
   .text-\[0\.813rem\] {
     font-size: 0.813rem;
   }
-  .font-bold {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
-  }
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
-  }
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
@@ -492,9 +438,6 @@
   .opacity-0 {
     opacity: 0%;
   }
-  .opacity-100 {
-    opacity: 100%;
-  }
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
@@ -510,10 +453,6 @@
   .duration-100 {
     --tw-duration: 100ms;
     transition-duration: 100ms;
-  }
-  .outline-none {
-    --tw-outline-style: none;
-    outline-style: none;
   }
   .before\:mr-3 {
     &::before {
@@ -571,44 +510,10 @@
       }
     }
   }
-  .hover\:bg-orange-1\/10 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: color-mix(in srgb, rgb(245, 151, 63) 10%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-orange-1) 10%, transparent);
-        }
-      }
-    }
-  }
-  .hover\:brightness-50 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-brightness: brightness(50%);
-        filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-      }
-    }
-  }
-  .hover\:brightness-75 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-brightness: brightness(75%);
-        filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-      }
-    }
-  }
   .hover\:brightness-80 {
     &:hover {
       @media (hover: hover) {
         --tw-brightness: brightness(80%);
-        filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-      }
-    }
-  }
-  .hover\:brightness-90 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-brightness: brightness(90%);
         filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
       }
     }
@@ -622,6 +527,15 @@
 }
 * {
   font-family: "Poppins", sans-serif;
+}
+html, body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  margin: 0;
+}
+body {
+  height: 100dvh;
+  width: 100dvw;
 }
 button {
   cursor: pointer;

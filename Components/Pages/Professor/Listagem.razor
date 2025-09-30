@@ -1,6 +1,10 @@
 @page "/professores"
 @using SaemWeb.Components.Layout.Header;
-@using SaemWeb.Components.Section;
+@using SaemWeb.Components.Section.List;
+@using SaemWeb.Models;
+@inject InstrumentoDAO instrumentoDAO;
+
+<PageTitle>Professores - SAEM</PageTitle>
 
 <Header>
   <Title>
@@ -28,8 +32,18 @@
         <span>Ações</span>
       </ChildContent>
     </ListItem>
-    <ListRecord />
-    <ListRecord />
-    <ListRecord />
+
+    @foreach (Instrumento instrumento in instrumentos)
+    {
+      <ListRecord instrumento="instrumento" />
+    }
   </ul>
 </div>
+
+@code {
+  private List<Instrumento> instrumentos = new();
+  protected override void OnInitialized()
+  {
+    instrumentos = instrumentoDAO.Listar();
+  }
+}

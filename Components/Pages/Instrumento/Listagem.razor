@@ -1,0 +1,62 @@
+@page "/instrumentos"
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.Section;
+@using SaemWeb.Models;
+@using SaemWeb.Components.Section.ManagementDefaultSkeleton;
+@using SaemWeb.Components.Section.List;
+@inject InstrumentoDAO instrumentoDAO;
+
+<PageTitle>Instrumentos - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Instrumentos
+  </Title>
+</Header>
+
+<ManagementDefaultSkeleton ButtonText="Novo Instrumento" ButtonHRef="/instrumentos/cadastrar">
+  <ListHeader>
+    <ListItem Header="true" ColumnsCount="3">
+      <ChildContent>
+        <span>#</span>
+        <span>Nome</span>
+        <span>Tipo</span>
+        <span>Ações</span>
+      </ChildContent>
+    </ListItem>
+  </ListHeader>
+
+  <ListItems>
+    @{
+      int counter = 0;
+
+      @foreach (Instrumento instrumento in instrumentos)
+      {
+        <ListItem ColumnsCount="3">
+          <span>@counter</span>
+          <span>@instrumento.Nome</span>
+          <span>@instrumento.Tipo</span>
+
+          <ActionButtons SeeButtonHRef="./instrumentos/ver" EditButtonHRef="./instrumentos/editar"
+            ExcludeButtonFn="Nothing" />
+
+          <div>
+
+          </div>
+        </ListItem>
+      }
+
+      counter++;
+    }
+  </ListItems>
+</ManagementDefaultSkeleton>
+
+@code {
+  private List<Instrumento> instrumentos = new();
+  protected override void OnInitialized()
+  {
+    instrumentos = instrumentoDAO.Listar();
+  }
+
+  void Nothing() { }
+}

@@ -1,0 +1,28 @@
+@page "/professores/ver/{Id}"
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.Section.List;
+@using SaemWeb.Models;
+@inject InstrumentoDAO instrumentoDAO;
+
+<PageTitle>Professores - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Professores
+  </Title>
+</Header>
+
+<div class="flex flex-col gap-10">
+  professor burro @Id
+</div>
+
+@code {
+  [Parameter]
+  public required string Id { get; set; }
+
+  private List<Instrumento> instrumentos = new();
+  protected override void OnInitialized()
+  {
+    instrumentos = instrumentoDAO.Listar();
+  }
+}

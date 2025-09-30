@@ -1,4 +1,6 @@
 using SaemWeb.Components;
+using SaemWeb.Configs;
+using SaemWeb.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddSingleton<SaemWeb.Configs.Connection>();
+builder.Services.AddSingleton<Connection>();
+builder.Services.AddScoped<InstrumentoDAO>();
+
 
 var app = builder.Build();
 

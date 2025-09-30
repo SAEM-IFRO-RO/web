@@ -1,0 +1,21 @@
+@using SaemWeb.Components.Section;
+@using SaemWeb.Models
+
+<ListItem>
+  <ChildContent>
+    <span>@instrumento.Id</span>
+    <span>@instrumento.Nome</span>
+    <span>@instrumento.Tipo</span>
+    <span>cpf</span>
+    <div class="flex justify-between">
+      <ActionButton IconSrc="./icons/eye.svg" />
+      <ActionButton IconSrc="./icons/pencil.svg" />
+      <ActionButton IconSrc="./icons/trash.svg" />
+    </div>
+  </ChildContent>
+</ListItem>
+
+@code {
+  [Parameter]
+  public required Instrumento instrumento { get; set; }
+}

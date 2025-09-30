@@ -1,0 +1,23 @@
+@using SaemWeb.Components.Section.List;
+
+<div class="flex justify-between">
+  <NavLink href="@SeeButtonHRef">
+    <ActionButton IconSrc="./icons/eye.svg" />
+  </NavLink>
+
+  <NavLink href="@EditButtonHRef">
+    <ActionButton IconSrc="./icons/pencil.svg" />
+  </NavLink>
+
+  <ActionButton @onclick="@ExcludeButtonFn" IconSrc="./icons/trash.svg" />
+</div>
+
+@code {
+  [Parameter]
+  public required string SeeButtonHRef { get; set; }
+  [Parameter]
+  public required string EditButtonHRef { get; set; }
+  [Parameter]
+  public required EventCallback ExcludeButtonFn { get; set; }
+
+}

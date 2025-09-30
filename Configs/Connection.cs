@@ -7,7 +7,7 @@ namespace SaemWeb.Configs
     private readonly string _connectionString;
     public Connection(IConfiguration configuration)
     {
-      _connectionString = configuration.GetConnectionString("MySqlConnection") ?? "";
+      _connectionString = configuration.GetConnectionString("DefaultConnection") ?? "";
     }
 
     public MySqlConnection GetConnection()

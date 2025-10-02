@@ -1,8 +1,9 @@
 @page "/professores"
 @using SaemWeb.Components.Layout.Header;
 @using SaemWeb.Components.Section.List;
+@using SaemWeb.Components.Section.List.Record;
 @using SaemWeb.Models;
-@inject InstrumentoDAO instrumentoDAO;
+@inject ProfessorDAO professorDAO;
 
 <PageTitle>Professores - SAEM</PageTitle>
 
@@ -33,17 +34,17 @@
       </ChildContent>
     </ListItem>
 
-    @foreach (Instrumento instrumento in instrumentos)
+    @foreach (Professor professor in professores)
     {
-      <ListRecord instrumento="instrumento" />
+      <ListRecord item="professor" />
     }
   </ul>
 </div>
 
 @code {
-  private List<Instrumento> instrumentos = new();
+  private List<Professor> professores = new();
   protected override void OnInitialized()
   {
-    instrumentos = instrumentoDAO.Listar();
+    professores = professorDAO.Listar();
   }
 }

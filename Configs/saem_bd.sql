@@ -44,13 +44,13 @@ foreign key(id_cur_fk) references Curso(id_cur)
 
 create table aluno (
 id_alu int primary key auto_increment,
-cpf_alu varchar(100),
+cpf_alu varchar(20),
 nome_alu varchar(200),
 data_nascimento_alu date,
 foto_perfil_alu blob,
-email_alu varchar(200),
-telefone_alu varchar(100),
-cep_alu varchar(200),
+email_alu varchar(100),
+telefone_alu varchar(40),
+cep_alu varchar(20),
 id_tur_fk int not null,
 id_cur_fk int not null,
 foreign key(id_tur_fk) references turma(id_tur),

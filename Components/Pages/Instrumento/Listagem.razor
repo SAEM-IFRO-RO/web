@@ -39,11 +39,12 @@
 
           <ActionButtons SeeButtonHRef="./instrumentos/ver" EditButtonHRef="./instrumentos/editar"
             ExcludeButtonFn="Nothing" />
-
-          <div>
-
-          </div>
         </ListItem>
+      }
+
+      @if (instrumentos.Count == 0)
+      {
+        <span>Ainda não há nenhum instrumento cadastrado.</span>
       }
 
       counter++;

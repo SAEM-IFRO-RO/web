@@ -34,9 +34,15 @@
       </ChildContent>
     </ListItem>
 
+
     @foreach (Professor professor in professores)
     {
       <ListRecord item="professor" />
+    }
+
+    @if (professores.Count == 0)
+    {
+      <span>Ainda não há nenhum professor cadastrado.</span>
     }
   </ul>
 </div>

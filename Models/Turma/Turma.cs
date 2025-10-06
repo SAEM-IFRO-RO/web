@@ -9,5 +9,6 @@ namespace SaemWeb.Models
     public required string Status { get; set; }
     public DateTime DataInicial { get; set; }
     public DateTime DataFinal { get; set; }
+    public int IdCursoFk { get; set; }
   }
 }

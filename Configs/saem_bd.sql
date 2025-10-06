@@ -9,52 +9,46 @@ tipo_ins varchar(200)
 
 create table turma (
 id_tur int primary key auto_increment,
-nome_tur varchar(200),
+nome_tur varchar(100),
 vagas_tur int,
-status_tur varchar(200),
+status_tur varchar(20),
 data_inicial_tur date,
 data_final_tur date
+
+id_cur_fk int,
+foreign key (id_cur_fk) references curso (id_cur_fk)
 );
 
 create table curso (
 id_cur int primary key auto_increment,
-nome_cur varchar(200) not null,
-nivel_dificuldade_cur varchar(200),
-descricao_cur varchar(300),
+nome_cur varchar(100) not null,
+nivel_dificuldade_cur varchar(20),
+descricao_cur varchar(200),
 id_ins_fk int not null,
 foreign key(id_ins_fk) references Instrumento(id_ins),
-foreign key(id_tur_fk) references Turma(id_tur)
 );
 
 create table professor (
 id_pro int primary key auto_increment,
-cpf_pro varchar(100),
-nome_pro varchar(200),
+cpf_pro varchar(20),
+nome_pro varchar(100),
 data_nascimento_pro date,
-foto_perfil_pro blob,
-email_pro varchar(200),
-telefone_pro varchar(100),
-cep_pro varchar(200),
-instrumentos_pro varchar(300),
+email_pro varchar(100),
+telefone_pro varchar(30),
+cep_pro varchar(20),
 id_ins_fk int not null,
-id_cur_fk int not null,
 foreign key(id_ins_fk) references Instrumento(id_ins),
-foreign key(id_cur_fk) references Curso(id_cur)
 );
 
 create table aluno (
 id_alu int primary key auto_increment,
 cpf_alu varchar(20),
-nome_alu varchar(200),
+nome_alu varchar(100),
 data_nascimento_alu date,
 foto_perfil_alu blob,
 email_alu varchar(100),
-telefone_alu varchar(40),
+telefone_alu varchar(30),
 cep_alu varchar(20),
-id_tur_fk int not null,
-id_cur_fk int not null,
-foreign key(id_tur_fk) references turma(id_tur),
-foreign key(id_cur_fk) references curso(id_cur)
 );
 
 create table mensalidade (

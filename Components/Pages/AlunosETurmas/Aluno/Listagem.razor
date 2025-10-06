@@ -1,1 +1,61 @@
 @page "/alunos-e-turmas/alunos"
+
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.Section;
+@using SaemWeb.Models;
+@using SaemWeb.Components.Section.ManagementDefaultSkeleton;
+@using SaemWeb.Components.Section.List;
+@using SaemWeb.Components.UI;
+@inject AlunoDAO alunoDAO;
+
+<PageTitle>Alunos e Turmas - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Alunos e Turmas
+  </Title>
+</Header>
+
+<ManagementDefaultSkeleton ButtonText="Novo Aluno" ButtonHRef="/alunos-e-turmas/alunos/cadastrar">
+  <ListHeader>
+    <ListItem Header="true" ColumnsCount="4">
+      <ChildContent>
+        <span>Nome</span>
+        <span>CPF</span>
+        <span>Email</span>
+        <span>Telefone</span>
+        <span>Ações</span>
+      </ChildContent>
+    </ListItem>
+  </ListHeader>
+
+  <ListItems>
+    @foreach (Aluno aluno in alunos)
+    {
+      <ListItem ColumnsCount="3">
+        <span>@aluno.Nome</span>
+        <span>@aluno.Cpf</span>
+        <span>@aluno.Email</span>
+        <span>@aluno.Telefone</span>
+
+        <ActionButtons SeeButtonHRef="./cursos/ver" EditButtonHRef="/alunos-e-turmas/alunos/editar"
+          ExcludeButtonFn="Nothing" />
+      </ListItem>
+    }
+
+    @if (alunos.Count == 0)
+    {
+      <span>Ainda não há nenhum aluno cadastrado.</span>
+    }
+  </ListItems>
+</ManagementDefaultSkeleton>
+
+@code {
+  private List<Aluno> alunos = new();
+  protected override void OnInitialized()
+  {
+    alunos = alunoDAO.Listar();
+  }
+
+  void Nothing() { }
+}

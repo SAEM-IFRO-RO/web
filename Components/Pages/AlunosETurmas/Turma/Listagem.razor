@@ -6,6 +6,8 @@
 @using SaemWeb.Components.Section.ManagementDefaultSkeleton;
 @using SaemWeb.Components.Section.List;
 @using SaemWeb.Components.UI;
+@inject NavigationManager Navigation
+
 @inject TurmaDAO turmaDAO;
 
 <PageTitle>Alunos e Turmas - SAEM</PageTitle>
@@ -15,6 +17,12 @@
     Alunos e Turmas
   </Title>
 </Header>
+
+Visualizando listagem de
+<select @onchange="OnSelectionChanged">
+  <option value="turmas">Turmas</option>
+  <option value="alunos">Alunos</option>
+</select>
 
 <ManagementDefaultSkeleton ButtonText="Nova Turma" ButtonHRef="/alunos-e-turmas/turmas/cadastrar">
   <ListHeader>
@@ -56,4 +64,18 @@
   }
 
   void Nothing() { }
+}
+
+@code {
+  private string selectedValue = "turmas";
+
+  private void OnSelectionChanged(ChangeEventArgs e)
+  {
+    selectedValue = e.Value?.ToString();
+
+    if (selectedValue == "alunos")
+    {
+      Navigation.NavigateTo("/alunos-e-turmas/alunos");
+    }
+  }
 }

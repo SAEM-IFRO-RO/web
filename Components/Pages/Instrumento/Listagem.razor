@@ -4,6 +4,7 @@
 @using SaemWeb.Models;
 @using SaemWeb.Components.Section.ManagementDefaultSkeleton;
 @using SaemWeb.Components.Section.List;
+@using SaemWeb.Components.UI;
 @inject InstrumentoDAO instrumentoDAO;
 
 <PageTitle>Instrumentos - SAEM</PageTitle>
@@ -13,6 +14,11 @@
     Instrumentos
   </Title>
 </Header>
+
+
+<GoBackButton ButtonHRef="/cursos" />
+
+<br />
 
 <ManagementDefaultSkeleton ButtonText="Novo Instrumento" ButtonHRef="/instrumentos/cadastrar">
   <ListHeader>

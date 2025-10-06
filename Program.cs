@@ -12,6 +12,7 @@ builder.Services.AddSingleton<Connection>();
 builder.Services.AddScoped<AlunoDAO>();
 builder.Services.AddScoped<CursoDAO>();
 builder.Services.AddScoped<ProfessorDAO>();
+builder.Services.AddScoped<TurmaDAO>();
 
 var app = builder.Build();
 

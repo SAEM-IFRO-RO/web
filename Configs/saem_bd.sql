@@ -18,11 +18,10 @@ data_final_tur date
 
 create table curso (
 id_cur int primary key auto_increment,
-nome_cur varchar(200),
+nome_cur varchar(200) not null,
 nivel_dificuldade_cur varchar(200),
 descricao_cur varchar(300),
 id_ins_fk int not null,
-id_tur_fk int not null,
 foreign key(id_ins_fk) references Instrumento(id_ins),
 foreign key(id_tur_fk) references Turma(id_tur)
 );

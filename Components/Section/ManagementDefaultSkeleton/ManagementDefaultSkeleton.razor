@@ -1,11 +1,19 @@
+@using SaemWeb.Components.UI;
+
 <div class="flex flex-col gap-10">
   <div class="flex justify-between">
     <input type="text" class="border-grey border-2 rounded-lg p-2 focus:outline-none" placeholder="Digite aqui">
 
-    <NavLink href="@ButtonHRef" class="bg-orange-1 p-3 rounded-lg text-white flex gap-2.5 font-medium">
-      @ButtonText
-      <img src="./icons/plus.svg" />
-    </NavLink>
+    <div class="flex gap-7">
+      @OtherButton
+
+      <OrangeButton ButtonHRef="@ButtonHRef">
+        <Content>
+          @ButtonText
+          <img src="./icons/plus.svg" class="w-4.5" />
+        </Content>
+      </OrangeButton>
+    </div>
   </div>
 
   <ul>
@@ -23,4 +31,6 @@
   public required RenderFragment ListHeader { get; set; }
   [Parameter]
   public required RenderFragment ListItems { get; set; }
+  [Parameter]
+  public RenderFragment? OtherButton { get; set; }
 }

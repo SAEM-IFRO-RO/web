@@ -1,0 +1,66 @@
+@page "/cursos"
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.Section;
+@using SaemWeb.Models;
+@using SaemWeb.Components.Section.ManagementDefaultSkeleton;
+@using SaemWeb.Components.Section.List;
+@using SaemWeb.Components.UI;
+@inject CursoDAO cursoDAO;
+
+<PageTitle>Cursos - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Cursos
+  </Title>
+</Header>
+
+<ManagementDefaultSkeleton ButtonText="Novo Curso" ButtonHRef="/cursos/cadastrar">
+  <OtherButton>
+    <OrangeButton ButtonHRef="/instrumentos">
+      <Content>
+        Gestão de Instrumentos
+        <img src="./icons/guitar.svg" class="w-5" alt="Ícone de instrumento.">
+      </Content>
+    </OrangeButton>
+  </OtherButton>
+
+  <ListHeader>
+    <ListItem Header="true" ColumnsCount="3">
+      <ChildContent>
+        <span>Nome</span>
+        <span>Dificuldade</span>
+        <span>Descrição</span>
+        <span>Ações</span>
+      </ChildContent>
+    </ListItem>
+  </ListHeader>
+
+  <ListItems>
+    @foreach (Curso curso in cursos)
+    {
+      <ListItem ColumnsCount="3">
+        <span>@curso.Nome</span>
+        <span>@curso.Dificuldade</span>
+        <span>@curso.Descricao</span>
+
+        <ActionButtons SeeButtonHRef="./cursos/ver" EditButtonHRef="./cursos/editar" ExcludeButtonFn="Nothing" />
+      </ListItem>
+    }
+
+    @if (cursos.Count == 0)
+    {
+      <span>Ainda não há nenhum curso cadastrado.</span>
+    }
+  </ListItems>
+</ManagementDefaultSkeleton>
+
+@code {
+  private List<Curso> cursos = new();
+  protected override void OnInitialized()
+  {
+    cursos = cursoDAO.Listar();
+  }
+
+  void Nothing() { }
+}

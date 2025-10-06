@@ -1,0 +1,10 @@
+<NavLink href="@ButtonHRef" class="bg-orange-1 p-3 rounded-lg text-white flex gap-2.5 font-medium text-nowrap">
+  @Content
+</NavLink>
+
+@code {
+  [Parameter]
+  public string? ButtonHRef { get; set; } = "";
+  [Parameter]
+  public required RenderFragment Content { get; set; }
+}

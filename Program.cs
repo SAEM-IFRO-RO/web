@@ -10,6 +10,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddSingleton<Connection>();
 builder.Services.AddScoped<InstrumentoDAO>();
+builder.Services.AddScoped<CursoDAO>();
 builder.Services.AddScoped<ProfessorDAO>();
 
 var app = builder.Build();

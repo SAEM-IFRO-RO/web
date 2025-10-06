@@ -2,7 +2,7 @@
 @using SaemWeb.Components.Layout.Header;
 @using SaemWeb.Components.Section.List;
 @using SaemWeb.Models;
-@inject InstrumentoDAO instrumentoDAO;
+@inject ProfessorDAO professorDAO;
 
 <PageTitle>Professores - SAEM</PageTitle>
 
@@ -20,9 +20,9 @@
   [Parameter]
   public required string Id { get; set; }
 
-  private List<Instrumento> instrumentos = new();
+  private List<Professor> professores = new();
   protected override void OnInitialized()
   {
-    instrumentos = instrumentoDAO.Listar();
+    professores = professorDAO.Listar();
   }
 }

@@ -44,8 +44,8 @@ namespace SaemWeb.Models
       {
         var Curso = new Curso
         {
-          Id = leitor.GetInt32("id_ins"),
-          Nome = leitor.GetString("nome_ins"),
+          Id = leitor.GetInt32("id_cur"),
+          Nome = leitor.GetString("nome_cur"),
           Dificuldade = leitor.GetString("nivel_dificuldade_cur"),
           Descricao = leitor.GetString("descricao_cur"),
           IdInstrumentoFk = leitor.GetInt32("id_ins_fk"),

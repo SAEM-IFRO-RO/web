@@ -6,14 +6,16 @@
 }
 
 .label-input input,
-.label-input select {
+.label-input select,
+.label-input textarea {
   border: solid 2px var(--color-grey);
   padding: 0.4rem;
   border-radius: 6px;
 }
 
 .label-input input:focus,
-.label-input select:focus {
+.label-input select:focus,
+.label-input textarea:focus {
   border-color: var(--color-orange-1);
   outline: none;
 }
@@ -25,14 +27,15 @@
 }
 
 .label-input:has(input:focus) label,
-.label-input:has(select:focus) label {
+.label-input:has(select:focus) label,
+.label-input:has(textarea:focus) label {
   filter: brightness(1);
   color: var(--color-orange-1);
 }
 
 .form section {
-  display: flex;
+  display: grid;
   gap: 1.25rem;
-  flex-wrap: wrap;
+  grid-auto-flow: row;
   justify-content: space-between;
 }

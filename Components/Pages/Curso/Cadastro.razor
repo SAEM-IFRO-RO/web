@@ -1,5 +1,14 @@
-@using SaemWeb.Components.Layout.Header;
 @page "/cursos/cadastrar";
+
+
+@rendermode InteractiveServer
+@using SaemWeb.Models;
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.UI;
+@inject CursoDAO cursoDAO;
+@inject InstrumentoDAO instrumentoDAO;
+@inject NavigationManager Navigation;
+
 
 <PageTitle>Cursos - SAEM</PageTitle>
 
@@ -9,6 +18,95 @@
   </Title>
 </Header>
 
-<NavLink href="/cursos">
-  Voltar
-</NavLink>
+<div class="w-full px-36">
+  @if (erro != null)
+  {
+    <SaemWeb.Components.UI.Error Message="@erro" />
+  }
+
+  <EditForm Model="_novoCurso" OnSubmit="Salvar">
+    <div class="flex flex-col gap-5 form">
+
+      <Title Text="Identificação" />
+
+      <section class="grid-cols-2">
+        <div class="label-input col-span-2">
+          <label>Nome *</label>
+          <input @bind-value="_novoCurso!.Nome" type="text" class="form-control" name="nome"
+            placeholder="Digite o nome completo" />
+        </div>
+
+        <div class="label-input">
+          <label>Instrumento *</label>
+          <select @bind="_novoCurso!.IdInstrumentoFk" class="form-control"n placeholder="Selecione um instrumento">
+            <option value="" disabled selected>Selecione um instrumento</option>
+            @foreach (Instrumento instrumento in instrumentos)
+            {
+              <option value="@instrumento.Id">@instrumento.Nome</option>
+            }
+          </select>
+        </div>
+
+        <div class="label-input">
+          <label>Nível de dificuldade *</label>
+          <select @bind="_novoCurso!.Dificuldade" class="form-control">
+            <option value="" disabled selected>Selecione um curso</option>
+            <option value="Fácil">Fácil</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Difícil">Difícil</option>
+          </select>
+        </div>
+
+        <div class="label-input col-span-2">
+          <label>Descrição *</label>
+          <textarea class="form-control" name="descricao" placeholder="Descrição sobre o curso">
+            @_novoCurso!.Descricao
+            </textarea>
+        </div>
+
+      </section>
+
+      <nav class="flex justify-between">
+        <GoBackButton ButtonHRef="/cursos" />
+
+        <SaveButton />
+      </nav>
+    </div>
+  </EditForm>
+</div>
+
+@code {
+  private string? erro = null;
+
+  // lista de instrumentos do select
+  List<Instrumento> instrumentos = new();
+  protected override void OnInitialized()
+  {
+    instrumentos = instrumentoDAO.Listar();
+  }
+
+  //
+
+  [SupplyParameterFromForm]
+  private Curso? _novoCurso { get; set; } = new();
+
+  private void Salvar()
+  {
+    try
+    {
+      if (_novoCurso.Nome is null || _novoCurso.Nome == "")
+      {
+        throw new Exception("O campo nome é obrigatório");
+      }
+
+      cursoDAO.Inserir(_novoCurso);
+
+      Navigation.NavigateTo("/cursos");
+    }
+    catch (Exception ex)
+    {
+      erro = ex.Message;
+    }
+  }
+
+}

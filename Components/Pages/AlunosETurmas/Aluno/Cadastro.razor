@@ -23,14 +23,13 @@
   </div>
 }
 
-<div class="w-full px-25">
+<div class="w-full px-36">
   <EditForm Model="_novoAluno" OnSubmit="Salvar">
-    <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 form">
 
       <Title Text="Identificação" />
 
-      <section class="flex gap-5 flex-wrap">
-
+      <section>
         <div class="label-input">
           <label>Nome Completo *</label>
           <input @bind-value="_novoAluno!.Nome" type="text" class="form-control" name="nome"
@@ -64,9 +63,7 @@
           <input @bind-value="_novoAluno!.Telefone" type="text" class="form-control" name="telefone"
             placeholder="Ex: (00) 00000-0000" />
         </div>
-
       </section>
-
 
       <Title Text="Endereço" />
 
@@ -77,9 +74,16 @@
             placeholder="Ex: 00000-000" />
         </div>
       </section>
+
+      <nav class="flex justify-between">
+        <GoBackButton ButtonHRef="/alunos-e-turmas/alunos" />
+
+        <SaveButton />
+      </nav>
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+
+    @* <button type="submit" class="btn btn-primary">Salvar</button> *@
   </EditForm>
 </div>
 

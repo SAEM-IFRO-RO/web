@@ -191,20 +191,11 @@
   .col-span-5 {
     grid-column: span 5 / span 5;
   }
-  .mx-auto {
-    margin-inline: auto;
-  }
   .mr-3 {
     margin-right: calc(var(--spacing) * 3);
   }
   .mb-1 {
     margin-bottom: calc(var(--spacing) * 1);
-  }
-  .mb-2 {
-    margin-bottom: calc(var(--spacing) * 2);
-  }
-  .mb-4 {
-    margin-bottom: calc(var(--spacing) * 4);
   }
   .mb-5 {
     margin-bottom: calc(var(--spacing) * 5);
@@ -251,14 +242,14 @@
   .border-collapse {
     border-collapse: collapse;
   }
+  .cursor-pointer {
+    cursor: pointer;
+  }
   .resize {
     resize: both;
   }
   .grid-flow-row {
     grid-auto-flow: row;
-  }
-  .grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .grid-cols-\[4rem_repeat\(4\,1fr\)\] {
     grid-template-columns: 4rem repeat(4,1fr);
@@ -362,9 +353,6 @@
   .border-red-100 {
     border-color: var(--color-red-100);
   }
-  .border-red-200 {
-    border-color: var(--color-red-200);
-  }
   .bg-grey {
     background-color: var(--color-grey);
   }
@@ -385,9 +373,6 @@
   }
   .bg-red-50 {
     background-color: var(--color-red-50);
-  }
-  .bg-red-500 {
-    background-color: var(--color-red-500);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -428,14 +413,20 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
-  .px-10 {
-    padding-inline: calc(var(--spacing) * 10);
-  }
-  .px-20 {
-    padding-inline: calc(var(--spacing) * 20);
-  }
   .px-25 {
     padding-inline: calc(var(--spacing) * 25);
+  }
+  .px-35 {
+    padding-inline: calc(var(--spacing) * 35);
+  }
+  .px-36 {
+    padding-inline: calc(var(--spacing) * 36);
+  }
+  .px-40 {
+    padding-inline: calc(var(--spacing) * 40);
+  }
+  .px-45 {
+    padding-inline: calc(var(--spacing) * 45);
   }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
@@ -466,10 +457,6 @@
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
-  }
-  .text-xl {
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .text-\[0\.813rem\] {
     font-size: 0.813rem;

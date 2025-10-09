@@ -1,1 +1,92 @@
-@page "/alunos-e-turmas/alunos/cadastro"
+@page "/alunos-e-turmas/alunos/cadastrar"
+
+@rendermode InteractiveServer
+
+@using SaemWeb.Models;
+@using SaemWeb.Components.Layout.Header;
+@inject AlunoDAO alunoDAO;
+@inject NavigationManager Navigation;
+
+<PageTitle>Alunos e Turmas - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Alunos e Turmas
+  </Title>
+</Header>
+
+@if (erro != null)
+{
+  <div class="alert alert-danger">
+    @erro
+  </div>
+}
+
+<EditForm Model="_novoAluno" OnSubmit="Salvar">
+  <div class="form-group mb-4">
+    <div class="label-input">
+      <label>Nome</label>
+      <input @bind-value="_novoAluno!.Nome" type="text" class="form-control" name="nome"
+        placeholder="Digite o nome completo" />
+    </div>
+
+    <div class="label-input">
+      <label>CPF</label>
+      <input @bind-value="_novoAluno!.Cpf" type="text" class="form-control" name="cpf"
+        placeholder="Ex: 000.000.000-00" />
+    </div>
+
+    <div class="label-input">
+      <label>Data de Nascimento</label>
+      <input @bind-value="_novoAluno!.DataNascimento" type="date" class="form-control" name="dataNascimento"
+        placeholder="Ex: 00/00/0000" />
+    </div>
+
+    <div class="label-input">
+      <label>E-mail</label>
+      <input @bind-value="_novoAluno!.Email" type="text" class="form-control" name="email"
+        placeholder="Ex: pessoa@dominio.com" />
+    </div>
+
+    <div class="label-input">
+      <label>Telefone</label>
+      <input @bind-value="_novoAluno!.Telefone" type="text" class="form-control" name="telefone"
+        placeholder="Ex: (00) 00000-0000" />
+    </div>
+
+    <div class="label-input">
+      <label>CEP</label>
+      <input @bind-value="_novoAluno!.Cep" type="text" class="form-control" name="cep" placeholder="Ex: 00000-000" />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</EditForm>
+
+
+@code {
+  private string? erro = null;
+
+  [SupplyParameterFromForm]
+  private Aluno? _novoAluno { get; set; } = new();
+
+  private void Salvar()
+  {
+    try
+    {
+      if (_novoAluno.Nome is null || _novoAluno.Nome == "")
+      {
+        throw new Exception("O campo nome é obrigatório");
+      }
+
+      alunoDAO.Inserir(_novoAluno);
+
+      Navigation.NavigateTo("/alunos-e-turmas/alunos");
+    }
+    catch (Exception ex)
+    {
+      erro = ex.Message;
+    }
+  }
+
+}

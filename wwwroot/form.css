@@ -1,0 +1,38 @@
+.label-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.label-input input,
+.label-input select {
+  border: solid 2px var(--color-grey);
+  padding: 0.4rem;
+  border-radius: 6px;
+}
+
+.label-input input:focus,
+.label-input select:focus {
+  border-color: var(--color-orange-1);
+  outline: none;
+}
+
+.label-input label {
+  color: var(--color-grey);
+  filter: brightness(0.8);
+  font-size: 0.9rem;
+}
+
+.label-input:has(input:focus) label,
+.label-input:has(select:focus) label {
+  filter: brightness(1);
+  color: var(--color-orange-1);
+}
+
+.form section {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

@@ -3,20 +3,8 @@ use saem_bd;
 
 create table instrumento (
 id_ins int primary key auto_increment,
-nome_ins varchar(200),
-tipo_ins varchar(200)
-);
-
-create table turma (
-id_tur int primary key auto_increment,
-nome_tur varchar(100),
-vagas_tur int,
-status_tur varchar(20),
-data_inicial_tur date,
-data_final_tur date
-
-id_cur_fk int,
-foreign key (id_cur_fk) references curso (id_cur_fk)
+nome_ins varchar(50),
+tipo_ins varchar(50)
 );
 
 create table curso (
@@ -25,19 +13,32 @@ nome_cur varchar(100) not null,
 nivel_dificuldade_cur varchar(20),
 descricao_cur varchar(200),
 id_ins_fk int not null,
-foreign key(id_ins_fk) references Instrumento(id_ins),
+foreign key(id_ins_fk) references Instrumento(id_ins)
 );
+
+create table turma (
+id_tur int primary key auto_increment,
+nome_tur varchar(100),
+vagas_tur int,
+status_tur varchar(20),
+data_inicial_tur date,
+data_final_tur date,
+
+id_cur_fk int,
+foreign key (id_cur_fk) references curso (id_cur)
+);
+
 
 create table professor (
 id_pro int primary key auto_increment,
 cpf_pro varchar(20),
 nome_pro varchar(100),
 data_nascimento_pro date,
-email_pro varchar(100),
+email_pro varchar(50),
 telefone_pro varchar(30),
 cep_pro varchar(20),
 id_ins_fk int not null,
-foreign key(id_ins_fk) references Instrumento(id_ins),
+foreign key(id_ins_fk) references Instrumento(id_ins)
 );
 
 create table aluno (
@@ -45,10 +46,9 @@ id_alu int primary key auto_increment,
 cpf_alu varchar(20),
 nome_alu varchar(100),
 data_nascimento_alu date,
-foto_perfil_alu blob,
 email_alu varchar(100),
 telefone_alu varchar(30),
-cep_alu varchar(20),
+cep_alu varchar(20)
 );
 
 create table mensalidade (
@@ -64,7 +64,7 @@ foreign key(id_cur_fk) references Curso(id_cur)
 
 create table aula (
 id_aul int primary key auto_increment,
-nome_aul varchar(200),
+nome_aul varchar(50),
 data_aul date,
 horario_aul time,
 id_tur_fk int not null,

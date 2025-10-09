@@ -2,12 +2,12 @@ namespace SaemWeb.Models
 {
   public class Professor
   {
-    public required int Id { get; set; }
-    public required string Nome { get; set; }
-    public required string Cpf { get; set; }
+    public int? Id { get; set; }
+    public string? Nome { get; set; }
+    public string? Cpf { get; set; }
     public DateTime? DataNascimento { get; set; }
-    public required string Email { get; set; }
-    public required string Telefone { get; set; }
-    public required string Cep { get; set; }
+    public string? Email { get; set; }
+    public string? Telefone { get; set; }
+    public string? Cep { get; set; }
   }
 }

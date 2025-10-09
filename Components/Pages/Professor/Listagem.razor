@@ -3,6 +3,7 @@
 @using SaemWeb.Components.Section.List;
 @using SaemWeb.Components.Section.List.Record;
 @using SaemWeb.Models;
+@using SaemWeb.Components.Section.ManagementDefaultSkeleton;
 @inject ProfessorDAO professorDAO;
 
 <PageTitle>Professores - SAEM</PageTitle>
@@ -13,39 +14,38 @@
   </Title>
 </Header>
 
-<div class="flex flex-col gap-10">
-  <div class="flex justify-between">
-    <input type="text" class="border-grey border-2 rounded-lg p-2 focus:outline-none" placeholder="Digite aqui">
-
-    <NavLink href="/professores/cadastrar" class="bg-orange-1 p-3 rounded-lg text-white flex gap-2.5 font-medium">
-      Novo Professor
-      <img src="./icons/plus.svg" />
-    </NavLink>
-  </div>
-
-  <ul>
+<ManagementDefaultSkeleton ButtonText="Novo Professor" ButtonHRef="/professores/cadastrar">
+  <ListHeader>
     <ListItem Header="true" ColumnsCount="4">
       <ChildContent>
-        <span>Nome completo</span>
-        <span>Telefone</span>
-        <span>E-mail</span>
-        <span>Ações</span>
+        <span>Nome</span>
         <span>CPF</span>
+        <span>Email</span>
+        <span>Telefone</span>
+        <span>Ações</span>
       </ChildContent>
     </ListItem>
+  </ListHeader>
 
-
+  <ListItems>
     @foreach (Professor professor in professores)
     {
-      <ListRecord item="professor" />
+      <ListItem ColumnsCount="4">
+        <span>@professor.Nome</span>
+        <span>@professor.Cpf</span>
+        <span>@professor.Email</span>
+        <span>@professor.Telefone</span>
+
+        <ActionButtons SeeButtonHRef="./cursos/ver" EditButtonHRef="/professores/editar" ExcludeButtonFn="Nothing" />
+      </ListItem>
     }
 
     @if (professores.Count == 0)
     {
       <span>Ainda não há nenhum professor cadastrado.</span>
     }
-  </ul>
-</div>
+  </ListItems>
+</ManagementDefaultSkeleton>
 
 @code {
   private List<Professor> professores = new();
@@ -53,4 +53,6 @@
   {
     professores = professorDAO.Listar();
   }
+
+  void Nothing() { }
 }

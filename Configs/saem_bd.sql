@@ -36,9 +36,7 @@ nome_pro varchar(100),
 data_nascimento_pro date,
 email_pro varchar(50),
 telefone_pro varchar(30),
-cep_pro varchar(20),
-id_ins_fk int not null,
-foreign key(id_ins_fk) references Instrumento(id_ins)
+cep_pro varchar(20)
 );
 
 create table aluno (

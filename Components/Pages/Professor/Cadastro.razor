@@ -1,6 +1,12 @@
 @page "/professores/cadastrar"
+
+@rendermode InteractiveServer
+@using SaemWeb.Models;
 @using SaemWeb.Components.Layout.Header;
-@using SaemWeb.Components.Section;
+@using SaemWeb.Components.UI;
+@inject ProfessorDAO professorDAO;
+@inject NavigationManager Navigation;
+
 
 <Header>
   <Title>
@@ -9,14 +15,104 @@
         Professores /
       </span>
     </NavLink>
+
     <span class="opacity-0">.</span>
 
     Cadastrar Professor
   </Title>
 </Header>
 
-TODO: add formulario
 
-<NavLink href="/professores">
-Voltar
-</NavLink>
+
+<div class="w-full px-36">
+  @if (erro != null)
+  {
+    <SaemWeb.Components.UI.Error Message="@erro" />
+  }
+  
+  <EditForm Model="_novoProfessor" OnSubmit="Salvar">
+    <div class="flex flex-col gap-5 form">
+
+      <Title Text="Identificação" />
+
+      <section>
+        <div class="label-input">
+          <label>Nome Completo *</label>
+          <input @bind-value="_novoProfessor!.Nome" type="text" class="form-control" name="nome"
+            placeholder="Digite o nome completo" />
+        </div>
+
+        <div class="label-input">
+          <label>CPF *</label>
+          <input @bind-value="_novoProfessor!.Cpf" type="text" class="form-control" name="cpf"
+            placeholder="Ex: 000.000.000-00" />
+        </div>
+
+        <div class="label-input">
+          <label>Data de Nascimento *</label>
+          <input @bind-value="_novoProfessor!.DataNascimento" type="date" class="form-control" name="dataNascimento"
+            placeholder="Ex: 00/00/0000" />
+        </div>
+      </section>
+
+      <Title Text="Contato" />
+
+      <section class="flex gap-5 flex-wrap">
+        <div class="label-input">
+          <label>E-mail</label>
+          <input @bind-value="_novoProfessor!.Email" type="email" class="form-control" name="email"
+            placeholder="Ex: pessoa@dominio.com" />
+        </div>
+
+        <div class="label-input">
+          <label>Telefone</label>
+          <input @bind-value="_novoProfessor!.Telefone" type="text" class="form-control" name="telefone"
+            placeholder="Ex: (00) 00000-0000" />
+        </div>
+      </section>
+
+      <Title Text="Endereço" />
+
+      <section class="flex gap-5 flex-wrap">
+        <div class="label-input">
+          <label>CEP</label>
+          <input @bind-value="_novoProfessor!.Cep" type="text" class="form-control" name="cep"
+            placeholder="Ex: 00000-000" />
+        </div>
+      </section>
+
+      <nav class="flex justify-between">
+        <GoBackButton ButtonHRef="/professores" />
+
+        <SaveButton />
+      </nav>
+    </div>
+  </EditForm>
+</div>
+
+@code {
+  private string? erro = null;
+
+  [SupplyParameterFromForm]
+  private Professor? _novoProfessor { get; set; } = new();
+
+  private void Salvar()
+  {
+    try
+    {
+      if (_novoProfessor.Nome is null || _novoProfessor.Nome == "")
+      {
+        throw new Exception("O campo nome é obrigatório");
+      }
+
+      professorDAO.Inserir(_novoProfessor);
+
+      Navigation.NavigateTo("/professores");
+    }
+    catch (Exception ex)
+    {
+      erro = ex.Message;
+    }
+  }
+
+}

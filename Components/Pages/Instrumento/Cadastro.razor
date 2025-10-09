@@ -9,8 +9,6 @@
 @inject InstrumentoDAO instrumentoDAO;
 @inject NavigationManager Navigation;
 
-
-
 <PageTitle>Instrumentos - SAEM</PageTitle>
 
 <Header>
@@ -18,10 +16,6 @@
     Instrumentos / Cadastrar Instrumento
   </Title>
 </Header>
-
-<NavLink href="/instrumentos">
-  Voltar
-</NavLink>
 
 <div class="w-full px-36">
   @if (erro != null)
@@ -34,7 +28,7 @@
 
       <Title Text="Identificação" />
 
-      <section>
+      <section class="grid-cols-2">
         <div class="label-input">
           <label>Nome *</label>
           <input @bind-value="_novoInstrumento!.Nome" type="text" class="form-control" name="nome"
@@ -50,7 +44,7 @@
       </section>
 
       <nav class="flex justify-between">
-        <GoBackButton ButtonHRef="/professores" />
+        <GoBackButton ButtonHRef="/instrumentos" />
 
         <SaveButton />
       </nav>

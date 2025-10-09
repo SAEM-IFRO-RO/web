@@ -1,0 +1,18 @@
+<div class="border-2 border-grey rounded-lg p-5 flex flex-col items-center justify-center gap-3 max-w-50">
+
+  <span class="font-semibold text-4xl text-orange-2">
+    @Data
+  </span>
+
+  <h1 class="text-center text-sm">
+    @Title
+  </h1>
+</div>
+
+@code {
+  [Parameter]
+  public required dynamic Data { get; set; }
+  [Parameter]
+  public required string Title { get; set; }
+
+}

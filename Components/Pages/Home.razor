@@ -1,6 +1,13 @@
 ﻿@page "/"
 @using SaemWeb.Components.Layout.Header;
 @using SaemWeb.Components.Section.List;
+@using SaemWeb.Models;
+@using SaemWeb.Components.UI;
+@inject AlunoDAO alunoDAO;
+@inject ProfessorDAO professorDAO;
+@inject InstrumentoDAO instrumentoDAO;
+@inject CursoDAO cursoDAO;
+@inject TurmaDAO turmaDAO;
 
 <PageTitle>Home - SAEM</PageTitle>
 
@@ -10,77 +17,30 @@
   </Title>
 </Header>
 
-<article class="flex justify-between gap-14">
-  <GridSchedule />
+<article class="flex flex-wrap justify-center gap-14">
+  <Counts Data="@alunos.Count" Title="Total de alunos cadastrados" />
+  <Counts Data="@professores.Count" Title="Total de professores  cadastrados" />
+  <Counts Data="@instrumentos.Count" Title="Total de instrumentos cadastrados" />
+  <Counts Data="@cursos.Count" Title="Total de cursos cadastrados" />
+  <Counts Data="@turmas.Count" Title="Total de turmas cadastradas" />
 
-  <section class="flex flex-col justify-between gap-5 text-sm">
-    <div class="flex flex-col gap-1.5 border-2 border-grey rounded-lg p-2.5">
-      <h1 class="flex justify-center font-semibold text-sm gap-1.5 mb-1 px-1">
-        Aniversariantes do mês
-        <img src="./icons/cake.svg" alt="icone" class="w-4.5" />
-      </h1>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Alves</span>
-        <span>12/05</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Alves</span>
-        <span>12/05</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Alves</span>
-        <span>12/05</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Alves</span>
-        <span>12/05</span>
-      </span>
-    </div>
-
-    <div class="flex flex-col gap-1.5 border-2 border-grey rounded-lg p-2.5">
-      <h1 class="flex justify-center font-medium gap-1.5 mb-1 px-1 text-center">
-        Aluguéis do mês
-        <img src="./icons/key.svg" alt="icone" class="w-4.5" />
-      </h1>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Sala 52</span>
-        <span>12/05</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Sala 52</span>
-        <span>12/05</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Sala 52</span>
-        <span>12/05</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Sala 52</span>
-        <span>12/05</span>
-      </span>
-    </div>
-
-    <div class="flex flex-col gap-1.5 border-2 border-grey rounded-lg p-2.5">
-      <h1 class="flex justify-between font-medium gap-1.5 mb-1 px-1">
-        Mensalidades atrasadas
-        <img src="./icons/clockAlert.svg" alt="icone" class="w-4" />
-      </h1>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Tal</span>
-        <span class="text-red-800">R$ 300,00</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Tal</span>
-        <span class="text-red-800">R$ 300,00</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Tal</span>
-        <span class="text-red-800">R$ 300,00</span>
-      </span>
-      <span class="flex justify-between text-sm rounded-xs px-1">
-        <span>Fulano de Tal</span>
-        <span class="text-red-800">R$ 300,00</span>
-      </span>
-    </div>
-  </section>
 </article>
+
+@code {
+  private List<SaemWeb.Models.Aluno> alunos = new();
+  private List<SaemWeb.Models.Professor> professores = new();
+  private List<SaemWeb.Models.Instrumento> instrumentos = new();
+  private List<SaemWeb.Models.Curso> cursos = new();
+  private List<SaemWeb.Models.Turma> turmas = new();
+
+  protected override void OnInitialized()
+  {
+    alunos = alunoDAO.Listar();
+    professores = professorDAO.Listar();
+    instrumentos = instrumentoDAO.Listar();
+    cursos = cursoDAO.Listar();
+    turmas = turmaDAO.Listar();
+  }
+
+  void Nothing() { }
+}

@@ -29,8 +29,8 @@
 
       <Title Text="Identificação" />
 
-      <section>
-        <div class="label-input">
+      <section class="grid-cols-4">
+        <div class="label-input col-span-2">
           <label>Nome Completo *</label>
           <input @bind-value="_novoAluno!.Nome" type="text" class="form-control" name="nome"
             placeholder="Digite o nome completo" />
@@ -51,8 +51,8 @@
 
       <Title Text="Contato" />
 
-      <section class="flex gap-5 flex-wrap">
-        <div class="label-input">
+      <section class="grid-cols-4">
+        <div class="label-input col-span-3">
           <label>E-mail</label>
           <input @bind-value="_novoAluno!.Email" type="email" class="form-control" name="email"
             placeholder="Ex: pessoa@dominio.com" />
@@ -67,7 +67,7 @@
 
       <Title Text="Endereço" />
 
-      <section class="flex gap-5 flex-wrap">
+      <section>
         <div class="label-input">
           <label>CEP</label>
           <input @bind-value="_novoAluno!.Cep" type="text" class="form-control" name="cep"

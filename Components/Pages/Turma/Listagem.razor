@@ -21,16 +21,27 @@
 <ManagementDefaultSkeleton ButtonText="Nova Turma" ButtonHRef="/turmas/cadastrar">
   <ListHeader>
     <ListItem Header="true" ColumnsCount="3">
-      <ChildContent> <span>Nome</span> <span>Vagas</span> <span>Status</span> <span>Ações</span> </ChildContent>
+      <ChildContent>
+        <span>Nome</span>
+        <span>Vagas</span>
+        <span>Status</span>
+        <span>Ações</span>
+      </ChildContent>
     </ListItem>
   </ListHeader>
-  <ListItems> @foreach (Turma turma in turmas) {
-    <ListItem ColumnsCount="3"> <span>@turma.Nome</span>
-      <span>@turma.Vagas</span> <span>@turma.Status</span>
-      <ActionButtons SeeButtonHRef="./cursos/ver" EditButtonHRef="/turmas/editar"
-        ExcludeButtonFn="Nothing" />
-    </ListItem>
-        }
+
+  <ListItems>
+    @foreach (Turma turma in turmas)
+    {
+      <ListItem ColumnsCount="3">
+        <span>@turma.Nome</span>
+        <span>@turma.Vagas</span>
+        <span>@turma.Status</span>
+
+        <ActionButtons SeeButtonHRef="./turmas/ver" EditButtonHRef="/turmas/editar" ExcludeButtonFn="Nothing" />
+      </ListItem>
+    }
+
     @if (turmas.Count == 0)
     {
       <span>Ainda não há nenhuma turma cadastrada.</span>

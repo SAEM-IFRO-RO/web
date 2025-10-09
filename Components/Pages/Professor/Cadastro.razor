@@ -29,14 +29,14 @@
   {
     <SaemWeb.Components.UI.Error Message="@erro" />
   }
-  
+
   <EditForm Model="_novoProfessor" OnSubmit="Salvar">
     <div class="flex flex-col gap-5 form">
 
       <Title Text="Identificação" />
 
-      <section>
-        <div class="label-input">
+      <section class="grid-cols-4">
+        <div class="label-input col-span-2">
           <label>Nome Completo *</label>
           <input @bind-value="_novoProfessor!.Nome" type="text" class="form-control" name="nome"
             placeholder="Digite o nome completo" />
@@ -57,8 +57,8 @@
 
       <Title Text="Contato" />
 
-      <section class="flex gap-5 flex-wrap">
-        <div class="label-input">
+      <section class="grid-cols-4">
+        <div class="label-input col-span-3">
           <label>E-mail</label>
           <input @bind-value="_novoProfessor!.Email" type="email" class="form-control" name="email"
             placeholder="Ex: pessoa@dominio.com" />
@@ -73,7 +73,7 @@
 
       <Title Text="Endereço" />
 
-      <section class="flex gap-5 flex-wrap">
+      <section>
         <div class="label-input">
           <label>CEP</label>
           <input @bind-value="_novoProfessor!.Cep" type="text" class="form-control" name="cep"

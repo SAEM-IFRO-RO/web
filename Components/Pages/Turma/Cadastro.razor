@@ -1,1 +1,111 @@
-@page "/turmas/cadastro"
+@page "/turmas/cadastrar"
+
+@rendermode InteractiveServer
+@using SaemWeb.Models;
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.UI;
+@inject CursoDAO cursoDAO;
+@inject TurmaDAO turmaDAO;
+@inject NavigationManager Navigation;
+
+
+<PageTitle>Turmas - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Turmas / Cadastrar Turma
+  </Title>
+</Header>
+
+<div class="w-full px-20 lg:px-36">
+  @if (erro != null)
+  {
+    <SaemWeb.Components.UI.Error Message="@erro" />
+  }
+
+  <EditForm Model="_novaTurma" OnSubmit="Salvar">
+    <div class="flex flex-col gap-5 form">
+
+      <Title Text="Identificação" />
+
+      <section class="grid-cols-4">
+        <div class="label-input col-span-2">
+          <label>Nome *</label>
+          <input @bind-value="_novaTurma!.Nome" type="text" class="form-control" name="nome"
+            placeholder="Digite o nome da turma" />
+        </div>
+
+        <div class="label-input">
+          <label>Vagas *</label>
+          <input @bind-value="_novaTurma!.Vagas" type="number" min="0" class="form-control" name="vagas"
+            placeholder="Quantidade. Ex: 20" />
+        </div>
+
+        <div class="label-input">
+          <label>Status *</label>
+          <select @bind="_novaTurma!.Status" name="status" class="form-control">
+            <option value="" disabled selected>Selecione um status</option>
+            <option value="Aulas ainda não iniciadas">Aulas ainda não iniciadas</option>
+            <option value="Cursando">Cursando</option>
+            <option value="Concluído">Concluído</option>
+          </select>
+        </div>
+      </section>
+
+      <Title Text="Curso" />
+
+      <section>
+        <div class="label-input">
+          <label>Curso *</label>
+          <select name="curso" @bind="_novaTurma!.IdCursoFk" class="form-control" n placeholder="Selecione um curso">
+            <option value="" disabled selected>Selecione um curso</option>
+            @foreach (Curso curso in cursos)
+            {
+              <option value="@curso.Id">@curso.Nome</option>
+            }
+          </select>
+        </div>
+      </section>
+
+      <nav class="flex justify-between">
+        <GoBackButton ButtonHRef="/turmas" />
+
+        <SaveButton />
+      </nav>
+    </div>
+  </EditForm>
+</div>
+
+@code {
+  private string? erro = null;
+
+  List<Curso> cursos = new();
+  protected override void OnInitialized()
+  {
+    cursos = cursoDAO.Listar();
+  }
+
+  //
+
+  [SupplyParameterFromForm]
+  private Turma? _novaTurma { get; set; } = new();
+
+  private void Salvar()
+  {
+    try
+    {
+      if (_novaTurma.Nome is null || _novaTurma.Nome == "")
+      {
+        throw new Exception("O campo nome é obrigatório");
+      }
+
+      turmaDAO.Inserir(_novaTurma);
+
+      Navigation.NavigateTo("/turmas");
+    }
+    catch (Exception ex)
+    {
+      erro = ex.Message;
+    }
+  }
+}

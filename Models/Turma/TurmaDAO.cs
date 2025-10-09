@@ -47,7 +47,7 @@ namespace SaemWeb.Models
         var turma = new Turma
         {
           Id = leitor.GetInt32("id_tur"),
-          Nome = leitor.GetString("nome_pro"),
+          Nome = leitor.GetString("nome_tur"),
           Vagas = leitor.GetInt16("vagas_tur"),
           Status = leitor.GetString("status_tur"),
           DataInicial = leitor.GetDateTime("data_inicial_tur"),

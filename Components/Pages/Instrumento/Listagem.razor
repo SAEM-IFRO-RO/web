@@ -32,23 +32,22 @@
   </ListHeader>
 
   <ListItems>
-    @{
-      @foreach (Instrumento instrumento in instrumentos)
-      {
-        <ListItem ColumnsCount="2">
-          <span>@instrumento.Nome</span>
-          <span>@instrumento.Tipo</span>
+    @foreach (Instrumento instrumento in instrumentos)
+    {
+      <ListItem ColumnsCount="2">
+        <span>@instrumento.Nome</span>
+        <span>@instrumento.Tipo</span>
 
-          <ActionButtons SeeButtonHRef="./instrumentos/ver" EditButtonHRef="./instrumentos/editar"
-            ExcludeButtonFn="Nothing" />
-        </ListItem>
-      }
-
-      @if (instrumentos.Count == 0)
-      {
-        <span>Ainda não há nenhum instrumento cadastrado.</span>
-      }
+        <ActionButtons SeeButtonHRef="./instrumentos/ver" EditButtonHRef="./instrumentos/editar"
+          ExcludeButtonFn="Nothing" />
+      </ListItem>
     }
+
+    @if (instrumentos.Count == 0)
+    {
+      <span>Ainda não há nenhum instrumento cadastrado.</span>
+    }
+
   </ListItems>
 </ManagementDefaultSkeleton>
 

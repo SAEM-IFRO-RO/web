@@ -11,8 +11,30 @@ namespace SaemWeb.Models
     {
       _Connection = Connection;
     }
+    
+    // Inserção
+    public void Inserir(Turma turma)
+    {
+      try
+      {
+        var comando = _Connection.CreateCommand(" INSERT INTO turma VALUES (null, @_nome, @_vagas, @_status, @_data_inicial, @_data_final, @_id_cur_fk)");
 
+        comando.Parameters.AddWithValue("@_nome", turma.Nome);
+        comando.Parameters.AddWithValue("@_vagas", turma.Vagas);
+        comando.Parameters.AddWithValue("@_status", turma.Status);
+        comando.Parameters.AddWithValue("@_data_inicial", turma.DataInicial);
+        comando.Parameters.AddWithValue("@_data_final", turma.DataFinal);
+        comando.Parameters.AddWithValue("@_id_cur_fk", turma.IdCursoFk);
 
+        comando.ExecuteNonQuery();
+      }
+      catch (Exception)
+      {
+        throw;
+      }
+    }
+
+    // Listagem
     public List<Turma> Listar()
     {
       var lista = new List<Turma>();

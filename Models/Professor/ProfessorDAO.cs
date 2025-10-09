@@ -18,18 +18,6 @@ namespace SaemWeb.Models
     {
       try
       {
-        /*
-        
-create table professor (
-id_pro int primary key auto_increment,
-cpf_pro varchar(20),
-nome_pro varchar(100),
-data_nascimento_pro date,
-email_pro varchar(50),
-telefone_pro varchar(30),
-cep_pro varchar(20)
-);
-        */
         var comando = _Connection.CreateCommand(" INSERT INTO professor (cpf_pro, nome_pro, data_nascimento_pro, email_pro, telefone_pro, cep_pro) VALUES (@_cpf, @_nome, @_data_nascimento, @_email, @_telefone, @_cep)");
 
         comando.Parameters.AddWithValue("@_cpf", professor.Cpf);
@@ -47,7 +35,6 @@ cep_pro varchar(20)
         throw;
       }
     }
-
 
     // Listar
     public List<Professor> Listar()

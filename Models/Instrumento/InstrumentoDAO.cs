@@ -12,7 +12,26 @@ namespace SaemWeb.Models
       _Connection = Connection;
     }
 
+    // Inserção
 
+    public void Inserir(Instrumento instrumento)
+    {
+      try
+      {
+        var comando = _Connection.CreateCommand(" INSERT INTO instrumento (nome_ins, tipo_ins) VALUES (@_nome, @_tipo)");
+
+        comando.Parameters.AddWithValue("@_nome", instrumento.Nome);
+        comando.Parameters.AddWithValue("@_tipo", instrumento.Tipo);
+
+        comando.ExecuteNonQuery();
+      }
+      catch (Exception)
+      {
+        throw;
+      }
+    }
+
+    // Listar
     public List<Instrumento> Listar()
     {
       var lista = new List<Instrumento>();

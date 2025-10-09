@@ -1,6 +1,16 @@
 @using SaemWeb.Components.Layout.Header;
 @page "/instrumentos/cadastrar";
 
+
+@rendermode InteractiveServer
+@using SaemWeb.Models;
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.UI;
+@inject InstrumentoDAO instrumentoDAO;
+@inject NavigationManager Navigation;
+
+
+
 <PageTitle>Instrumentos - SAEM</PageTitle>
 
 <Header>
@@ -9,6 +19,68 @@
   </Title>
 </Header>
 
-<NavLink href="/professores">
+<NavLink href="/instrumentos">
   Voltar
 </NavLink>
+
+<div class="w-full px-36">
+  @if (erro != null)
+  {
+    <SaemWeb.Components.UI.Error Message="@erro" />
+  }
+
+  <EditForm Model="_novoInstrumento" OnSubmit="Salvar">
+    <div class="flex flex-col gap-5 form">
+
+      <Title Text="Identificação" />
+
+      <section>
+        <div class="label-input">
+          <label>Nome *</label>
+          <input @bind-value="_novoInstrumento!.Nome" type="text" class="form-control" name="nome"
+            placeholder="Digite o nome completo" />
+        </div>
+
+        <div class="label-input">
+          <label>Tipo *</label>
+          <input @bind-value="_novoInstrumento!.Tipo" type="text" class="form-control" name="tipo"
+            placeholder="Ex: Corda, Percussão etc" />
+        </div>
+
+      </section>
+
+      <nav class="flex justify-between">
+        <GoBackButton ButtonHRef="/professores" />
+
+        <SaveButton />
+      </nav>
+    </div>
+  </EditForm>
+</div>
+
+@code {
+  private string? erro = null;
+
+  [SupplyParameterFromForm]
+  private Instrumento? _novoInstrumento { get; set; } = new();
+
+  private void Salvar()
+  {
+    try
+    {
+      if (_novoInstrumento.Nome is null || _novoInstrumento.Nome == "")
+      {
+        throw new Exception("O campo nome é obrigatório");
+      }
+
+      instrumentoDAO.Inserir(_novoInstrumento);
+
+      Navigation.NavigateTo("/instrumentos");
+    }
+    catch (Exception ex)
+    {
+      erro = ex.Message;
+    }
+  }
+
+}

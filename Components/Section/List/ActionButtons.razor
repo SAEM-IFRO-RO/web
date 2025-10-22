@@ -9,7 +9,9 @@
     <ActionButton IconSrc="./icons/pencil.svg" />
   </NavLink>
 
-  <ActionButton HandleClick="@ExcludeButtonFn" IconSrc="./icons/trash.svg" />
+  <NavLink href="@ExcludeButtonHRef">
+    <ActionButton IconSrc="./icons/trash.svg" />
+  </NavLink>
 </div>
 
 @code {
@@ -18,6 +20,8 @@
   [Parameter]
   public required string EditButtonHRef { get; set; }
   [Parameter]
-  public required EventCallback ExcludeButtonFn { get; set; }
+  public string? ExcludeButtonHRef { get; set; }
+  [Parameter]
+  public EventCallback? ExcludeButtonFn { get; set; }
 
 }

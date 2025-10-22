@@ -2,9 +2,11 @@
 @using SaemWeb.Components.Layout.Header;
 @using SaemWeb.Components.Section;
 @using SaemWeb.Models;
-@using SaemWeb.Components.Section.ManagementDefaultSkeleton;
-@using SaemWeb.Components.Section.List;
 @using SaemWeb.Components.UI;
+
+@rendermode InteractiveServer
+@inject NavigationManager Navigation;
+
 @inject InstrumentoDAO instrumentoDAO;
 
 <PageTitle>Instrumentos - SAEM</PageTitle>
@@ -15,7 +17,29 @@
   </Title>
 </Header>
 
+<h1> Tem certeza que deseja excluir o instrumento? </h1>
+
+<button class="bg-red-400 text-white p-3 rounded-md" @onclick="() => ExcluirInstrumento()"> Excluir </button>
+
+<GoBackButton ButtonHRef="/instrumentos" />
+
+
 @code {
+  private string? erro = null;
+
   [Parameter]
   public int Id { get; set; }
+
+  void ExcluirInstrumento()
+
+  {
+    try
+    {
+      instrumentoDAO.Excluir(Id);
+    }
+    catch (Exception ex)
+    {
+      erro = $"Erro ao excluir o instrumento: {ex.Message}";
+    }
+  }
 }

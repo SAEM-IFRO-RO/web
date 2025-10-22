@@ -38,8 +38,9 @@
         <span>@instrumento.Nome</span>
         <span>@instrumento.Tipo</span>
 
-        <ActionButtons SeeButtonHRef="./instrumentos/ver" EditButtonHRef=@($"./instrumentos/editar/{@instrumento.Id}")
-          ExcludeButtonFn="Nothing" />
+        <ActionButtons SeeButtonHRef=@($"./instrumentos/ver/{@instrumento.Id}")
+          EditButtonHRef=@($"./instrumentos/editar/{@instrumento.Id}")
+          ExcludeButtonHRef=@($"./instrumentos/excluir/{@instrumento.Id}") />
       </ListItem>
     }
 
@@ -57,6 +58,4 @@
   {
     instrumentos = instrumentoDAO.Listar();
   }
-
-  void Nothing() { }
 }

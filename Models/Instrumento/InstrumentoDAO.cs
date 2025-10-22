@@ -52,5 +52,64 @@ namespace SaemWeb.Models
 
       return lista;
     }
+
+    public Instrumento? BuscarPorId(int id)
+    {
+      var comando = _Connection.CreateCommand(
+          "SELECT * FROM instrumento WHERE id_ins = @id;");
+      comando.Parameters.AddWithValue("@id", id);
+
+      var leitor = comando.ExecuteReader();
+
+      if (leitor.Read())
+      {
+        var instrumento = new Instrumento();
+        instrumento.Id = leitor.GetInt32("id_ins");
+        instrumento.Nome = DAOHelper.GetString(leitor, "nome_ins");
+        instrumento.Tipo = DAOHelper.GetString(leitor, "tipo_ins");
+
+        return instrumento;
+      }
+      else
+      {
+        return null;
+      }
+    }
+
+    public void Atualizar(Instrumento Instrumento)
+    {
+      try
+      {
+        var comando = _Connection.CreateCommand(
+        "UPDATE Instrumento SET nome_ins = @_nome, tipo_ins = @_tipo WHERE id_ins = @_id;");
+
+        comando.Parameters.AddWithValue("@_id", Instrumento.Id);
+        comando.Parameters.AddWithValue("@_nome", Instrumento.Nome);
+        comando.Parameters.AddWithValue("@_tipo", Instrumento.Tipo);
+
+        comando.ExecuteNonQuery();
+      }
+      catch
+      {
+        throw;
+      }
+    }
+
+    public void Excluir(int id)
+    {
+      try
+      {
+        var comando = _Connection.CreateCommand(
+        "DELETE FROM Instrumento WHERE id_ins = @id;");
+
+        comando.Parameters.AddWithValue("@id", id);
+
+        comando.ExecuteNonQuery();
+      }
+      catch
+      {
+        throw;
+      }
+    }
   }
 }

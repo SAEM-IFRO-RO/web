@@ -1,0 +1,21 @@
+@page "/instrumentos/excluir/{Id:int}"
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.Section;
+@using SaemWeb.Models;
+@using SaemWeb.Components.Section.ManagementDefaultSkeleton;
+@using SaemWeb.Components.Section.List;
+@using SaemWeb.Components.UI;
+@inject InstrumentoDAO instrumentoDAO;
+
+<PageTitle>Instrumentos - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Instrumentos / Excluir Instrumento
+  </Title>
+</Header>
+
+@code {
+  [Parameter]
+  public int Id { get; set; }
+}

@@ -1,0 +1,94 @@
+@page "/instrumentos/editar/{Id:int}";
+
+@rendermode InteractiveServer
+@using SaemWeb.Models;
+@using SaemWeb.Components.Layout.Header;
+@using SaemWeb.Components.UI;
+@inject InstrumentoDAO instrumentoDAO;
+@inject NavigationManager Navigation;
+
+<PageTitle>Instrumentos - SAEM</PageTitle>
+
+<Header>
+  <Title>
+    Instrumentos / Editar Instrumento
+  </Title>
+</Header>
+
+<div class="w-full px-36">
+  @if (erro != null)
+  {
+    <SaemWeb.Components.UI.Error Message="@erro" />
+  }
+
+  <EditForm Model="instrumento" OnSubmit="Salvar">
+    <div class="flex flex-col gap-5 form">
+
+      <Title Text="Identificação" />
+
+      <section class="grid-cols-2">
+        <div class="label-input">
+          <label>Nome *</label>
+          <input @bind-value="instrumento!.Nome" type="text" class="form-control" name="nome"
+            placeholder="Digite o nome completo" />
+        </div>
+
+        <div class="label-input">
+          <label>Tipo *</label>
+          <input @bind-value="instrumento!.Tipo" type="text" class="form-control" name="tipo"
+            placeholder="Ex: Corda, Percussão etc" />
+        </div>
+
+      </section>
+
+      <nav class="flex justify-between">
+        <GoBackButton ButtonHRef="/instrumentos" />
+
+        <SaveButton />
+      </nav>
+    </div>
+  </EditForm>
+</div>
+
+@code {
+  private string? erro = null;
+  [Parameter]
+  public int Id { get; set; }
+
+  [SupplyParameterFromForm]
+  private Instrumento? instrumento { get; set; } = new();
+
+  protected override void OnInitialized()
+  {
+    var _instrumento = instrumentoDAO.BuscarPorId(Id);
+
+    if (_instrumento != null)
+    {
+      instrumento = _instrumento;
+    }
+    else
+    {
+      erro = "Instrumento não encontrado.";
+    }
+  }
+
+  private void Salvar()
+  {
+    try
+    {
+      if (instrumento.Nome is null || instrumento.Nome == "")
+      {
+        throw new Exception("O campo nome é obrigatório");
+      }
+
+      instrumentoDAO.Atualizar(instrumento);
+
+      Navigation.NavigateTo("/instrumentos");
+    }
+    catch (Exception ex)
+    {
+      erro = $"Erro ao salvar o produto: {ex.Message}";
+    }
+  }
+
+}

@@ -12,6 +12,7 @@ id_cur int primary key auto_increment,
 nome_cur varchar(100) not null,
 nivel_dificuldade_cur varchar(20),
 descricao_cur varchar(200),
+
 id_ins_fk int not null,
 foreign key(id_ins_fk) references Instrumento(id_ins)
 );
@@ -27,7 +28,6 @@ data_final_tur date,
 id_cur_fk int,
 foreign key (id_cur_fk) references curso (id_cur)
 );
-
 
 create table professor (
 id_pro int primary key auto_increment,
@@ -47,6 +47,15 @@ data_nascimento_alu date,
 email_alu varchar(100),
 telefone_alu varchar(30),
 cep_alu varchar(20)
+);
+
+create table aluno_turma (
+  id_alu_tur int primary key auto_increment,
+
+  id_tur_fk int not null,
+  id_alu_fk int not null,
+  foreign key(id_tur_fk) references Turma(id_tur),
+  foreign key(id_alu_fk) references Aluno(id_alu)
 );
 
 create table mensalidade (

@@ -38,7 +38,7 @@
 
         <div class="label-input">
           <label>Instrumento *</label>
-          <select @bind="_novoCurso!.IdInstrumentoFk" class="form-control"n placeholder="Selecione um instrumento">
+          <select @bind="_novoCurso!.IdInstrumentoFk" class="form-control" placeholder="Selecione um instrumento">
             <option value="" disabled selected>Selecione um instrumento</option>
             @foreach (Instrumento instrumento in instrumentos)
             {

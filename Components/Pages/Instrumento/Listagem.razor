@@ -38,7 +38,7 @@
         <span>@instrumento.Nome</span>
         <span>@instrumento.Tipo</span>
 
-        <ActionButtons SeeButtonHRef="./instrumentos/ver" EditButtonHRef="./instrumentos/editar"
+        <ActionButtons SeeButtonHRef="./instrumentos/ver" EditButtonHRef=@($"./instrumentos/editar/{@instrumento.Id}")
           ExcludeButtonFn="Nothing" />
       </ListItem>
     }
